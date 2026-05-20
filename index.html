@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Demo premium de una web privada para bodas en bodega: galería, recuerdos, programa, ubicación y mensajes de invitados."
+    />
+    <title>La boda de Ana & Javier | Bodegas Otazu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header" id="top">
+      <a class="brand" href="#top" aria-label="Inicio">
+        <span>Ana & Javier</span>
+        <small>Bodegas Otazu</small>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span class="sr-only">Abrir menú</span>
+      </button>
+
+      <nav class="main-menu" id="main-menu" aria-label="Menú principal">
+        <a href="#historia">Historia</a>
+        <a href="#programa">Programa</a>
+        <a href="#galeria">Galería</a>
+        <a href="#mensajes">Recuerdos</a>
+        <a href="#ubicacion">Ubicación</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-overlay"></div>
+        <div class="hero-content reveal">
+          <p class="eyebrow">12 de octubre de 2026</p>
+          <h1 id="hero-title">La boda de Ana & Javier</h1>
+          <p class="hero-subtitle">Un recuerdo eterno en Bodegas Otazu</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#galeria">Ver galería</a>
+            <a class="btn btn-secondary" href="#mensajes">Dejar un recuerdo</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="intro section-pad">
+        <div class="section-inner intro-grid">
+          <div class="intro-copy reveal">
+            <p class="section-kicker">Álbum privado</p>
+            <h2>Un día para recordar</h2>
+            <p>
+              Esta web reúne los momentos más especiales de una celebración única:
+              las miradas antes de la ceremonia, los brindis, las risas del banquete
+              y esas fotografías espontáneas que hacen que un día vuelva a sentirse vivo.
+            </p>
+          </div>
+          <div class="intro-card reveal">
+            <span>Un espacio privado para conservar, compartir y revivir la boda.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="story section-pad" id="historia">
+        <div class="section-inner story-layout">
+          <div class="story-image reveal" role="img" aria-label="Pareja celebrando una boda entre viñedos"></div>
+          <div class="story-copy reveal">
+            <p class="section-kicker">Nuestra historia</p>
+            <h2>Nuestra historia</h2>
+            <p>
+              Ana y Javier se conocieron una tarde de verano, casi por casualidad,
+              en una mesa compartida con amigos. Lo que empezó con una conversación
+              tranquila terminó convirtiéndose en viajes, proyectos, domingos lentos y
+              una forma muy suya de mirar el mundo juntos.
+            </p>
+            <p>
+              Hoy celebran ese camino rodeados de las personas que han formado parte
+              de su historia, en un lugar donde el vino, la naturaleza y la memoria se
+              encuentran.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="program section-pad" id="programa">
+        <div class="section-inner">
+          <div class="section-heading reveal">
+            <p class="section-kicker">Programa del día</p>
+            <h2>Cada momento, a su tiempo</h2>
+          </div>
+          <div class="timeline">
+            <article class="timeline-item reveal">
+              <time>17:00</time>
+              <h3>Ceremonia</h3>
+              <p>El comienzo de la celebración entre piedra, luz y viñedos.</p>
+            </article>
+            <article class="timeline-item reveal">
+              <time>18:30</time>
+              <h3>Cóctel en jardines</h3>
+              <p>Primer brindis al aire libre con música suave y aperitivos.</p>
+            </article>
+            <article class="timeline-item reveal">
+              <time>20:30</time>
+              <h3>Banquete</h3>
+              <p>Una cena pensada para disfrutar sin prisa, mesa a mesa.</p>
+            </article>
+            <article class="timeline-item reveal">
+              <time>23:00</time>
+              <h3>Baile y fiesta</h3>
+              <p>El primer baile abre la noche y todo lo que viene después.</p>
+            </article>
+            <article class="timeline-item reveal">
+              <time>01:00</time>
+              <h3>Momentos finales</h3>
+              <p>Últimas canciones, abrazos y recuerdos para guardar siempre.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="gallery section-pad" id="galeria">
+        <div class="section-inner">
+          <div class="section-heading reveal">
+            <p class="section-kicker">Nuestro álbum</p>
+            <h2>Galería de fotos</h2>
+          </div>
+          <div class="gallery-grid">
+            <button class="gallery-item reveal" type="button" data-full="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=88" aria-label="Abrir foto de mesa de boda">
+              <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=650&q=82" alt="Mesa elegante preparada para una boda" />
+            </button>
+            <button class="gallery-item reveal" type="button" data-full="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1600&q=88" aria-label="Abrir foto de ceremonia">
+              <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=650&q=82" alt="Ceremonia de boda al aire libre" />
+            </button>
+            <button class="gallery-item reveal" type="button" data-full="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1600&q=88" aria-label="Abrir foto de pareja">
+              <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=650&q=82" alt="Pareja de novios durante la celebración" />
+            </button>
+            <button class="gallery-item reveal" type="button" data-full="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=1600&q=88" aria-label="Abrir foto de viñedos">
+              <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=650&q=82" alt="Viñedos al atardecer" />
+            </button>
+            <button class="gallery-item reveal" type="button" data-full="https://images.unsplash.com/photo-1494955870715-979ca4f13bf0?auto=format&fit=crop&w=1600&q=88" aria-label="Abrir foto de brindis">
+              <img src="https://images.unsplash.com/photo-1494955870715-979ca4f13bf0?auto=format&fit=crop&w=650&q=82" alt="Invitados brindando en una boda" />
+            </button>
+            <button class="gallery-item reveal" type="button" data-full="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1600&q=88" aria-label="Abrir foto de ramo">
+              <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=650&q=82" alt="Detalle floral de boda" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="videos section-pad" id="videos">
+        <div class="section-inner">
+          <div class="section-heading reveal">
+            <p class="section-kicker">Vídeos</p>
+            <h2>Momentos en movimiento</h2>
+          </div>
+          <div class="video-grid">
+            <article class="video-card reveal">
+              <span>01</span>
+              <h3>Entrada de los novios</h3>
+              <p>El instante en el que todos miran hacia la misma emoción.</p>
+            </article>
+            <article class="video-card reveal">
+              <span>02</span>
+              <h3>Primer baile</h3>
+              <p>Una canción, una pista iluminada y el mundo un poco más lento.</p>
+            </article>
+            <article class="video-card reveal">
+              <span>03</span>
+              <h3>Brindis</h3>
+              <p>Palabras de familia y amigos que merecen volver a escucharse.</p>
+            </article>
+            <article class="video-card reveal">
+              <span>04</span>
+              <h3>Fiesta</h3>
+              <p>La parte de la noche que nadie quiere que termine.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="messages section-pad" id="mensajes">
+        <div class="section-inner messages-layout">
+          <div class="messages-copy reveal">
+            <p class="section-kicker">Mensajes de invitados</p>
+            <h2>Recuerdos escritos con cariño</h2>
+            <div class="message-list">
+              <article>
+                <p>“Gracias por dejarnos vivir un día tan vuestro. Fue elegante, emocionante y lleno de verdad.”</p>
+                <strong>María</strong>
+              </article>
+              <article>
+                <p>“Nos quedamos con el brindis, el baile y esa luz preciosa entre los viñedos.”</p>
+                <strong>Iñigo y Laura</strong>
+              </article>
+              <article>
+                <p>“Ojalá podáis volver a esta página dentro de muchos años y sentirlo todo otra vez.”</p>
+                <strong>La cuadrilla</strong>
+              </article>
+            </div>
+          </div>
+
+          <form class="memory-form reveal" id="memory-form">
+            <label for="guest-name">Nombre</label>
+            <input id="guest-name" name="guest-name" type="text" placeholder="Tu nombre" required />
+            <label for="guest-message">Mensaje</label>
+            <textarea id="guest-message" name="guest-message" rows="5" placeholder="Escribe un recuerdo bonito..." required></textarea>
+            <button class="btn btn-primary" type="submit">Enviar recuerdo</button>
+            <p class="form-note" id="form-note" role="status"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="upload section-pad">
+        <div class="section-inner upload-panel reveal">
+          <div>
+            <p class="section-kicker">Fotos de invitados</p>
+            <h2>¿Tienes fotos o vídeos de la boda?</h2>
+            <p>
+              Envíanos tus recuerdos para completar el álbum privado de Ana y Javier.
+            </p>
+          </div>
+          <a
+            class="btn btn-whatsapp"
+            href="https://wa.me/34600000000?text=Hola%2C%20quiero%20enviar%20fotos%20o%20v%C3%ADdeos%20de%20la%20boda%20de%20Ana%20y%20Javier."
+            target="_blank"
+            rel="noopener"
+          >
+            Enviar por WhatsApp
+          </a>
+        </div>
+      </section>
+
+      <section class="location section-pad" id="ubicacion">
+        <div class="section-inner location-layout">
+          <div class="location-copy reveal">
+            <p class="section-kicker">Ubicación</p>
+            <h2>Bodegas Otazu</h2>
+            <p>Celebrado en un entorno único entre viñedos, historia y naturaleza.</p>
+            <a
+              class="btn btn-secondary"
+              href="https://www.google.com/maps/search/?api=1&query=Bodegas+Otazu"
+              target="_blank"
+              rel="noopener"
+            >
+              Ver ubicación
+            </a>
+          </div>
+          <div class="location-image reveal" role="img" aria-label="Paisaje de bodega y viñedos"></div>
+        </div>
+      </section>
+
+      <section class="closing section-pad">
+        <div class="section-inner closing-content reveal">
+          <p>Gracias por formar parte de nuestra historia</p>
+          <strong>Ana & Javier</strong>
+        </div>
+      </section>
+    </main>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Foto ampliada">
+      <button class="lightbox-close" type="button" aria-label="Cerrar foto">×</button>
+      <img src="" alt="Foto ampliada de la boda" />
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
