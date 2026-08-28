@@ -1,91 +1,14 @@
-const header = document.querySelector(".site-header");
-const menuButton = document.querySelector(".menu-toggle");
-const mainMenu = document.querySelector(".main-menu");
-const menuLinks = document.querySelectorAll(".main-menu a");
-const galleryItems = document.querySelectorAll(".gallery-item");
-const lightbox = document.querySelector("#lightbox");
-const lightboxImage = lightbox.querySelector("img");
-const lightboxClose = lightbox.querySelector(".lightbox-close");
-const memoryForm = document.querySelector("#memory-form");
-const formNote = document.querySelector("#form-note");
-const revealItems = document.querySelectorAll(".reveal");
-
-function setHeaderState() {
-  header.classList.toggle("scrolled", window.scrollY > 20);
-}
-
-function closeMenu() {
-  document.body.classList.remove("menu-open");
-  header.classList.remove("menu-active");
-  mainMenu.classList.remove("is-open");
-  menuButton.setAttribute("aria-expanded", "false");
-}
-
-function toggleMenu() {
-  const isOpen = document.body.classList.toggle("menu-open");
-  header.classList.toggle("menu-active", isOpen);
-  mainMenu.classList.toggle("is-open", isOpen);
-  menuButton.setAttribute("aria-expanded", String(isOpen));
-}
-
-function openLightbox(imageUrl, imageAlt) {
-  lightboxImage.src = imageUrl;
-  lightboxImage.alt = imageAlt || "Foto ampliada de la boda";
-  lightbox.classList.add("is-open");
-  lightbox.setAttribute("aria-hidden", "false");
-  document.body.classList.add("lightbox-open");
-}
-
-function closeLightbox() {
-  lightbox.classList.remove("is-open");
-  lightbox.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("lightbox-open");
-  lightboxImage.src = "";
-}
-
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.16 }
-);
-
-revealItems.forEach((item) => revealObserver.observe(item));
-
-window.addEventListener("scroll", setHeaderState);
-menuButton.addEventListener("click", toggleMenu);
-menuLinks.forEach((link) => link.addEventListener("click", closeMenu));
-
-galleryItems.forEach((item) => {
-  item.addEventListener("click", () => {
-    const image = item.querySelector("img");
-    openLightbox(item.dataset.full, image.alt);
-  });
-});
-
-lightboxClose.addEventListener("click", closeLightbox);
-lightbox.addEventListener("click", (event) => {
-  if (event.target === lightbox) {
-    closeLightbox();
-  }
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    closeMenu();
-    closeLightbox();
-  }
-});
-
-memoryForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  formNote.textContent = "Recuerdo enviado. Gracias por formar parte de este día.";
-  memoryForm.reset();
-});
-
-setHeaderState();
+const weddingConfig={couple:"Ana & Javier",date:"12 · 10 · 2026",venue:"Bodegas Otazu",audioPath:"assets/audio/wedding-intro.mp3",whatsapp:"34600000000"};
+const body=document.body,header=document.querySelector(".site-header"),intro=document.querySelector("#cinematic-intro"),enterButton=document.querySelector("#enter-button"),menuButton=document.querySelector(".menu-toggle"),mainMenu=document.querySelector(".main-menu"),audio=document.querySelector("#wedding-audio"),audioToggle=document.querySelector("#audio-toggle"),memoryForm=document.querySelector("#memory-form"),formNote=document.querySelector("#form-note"),lightbox=document.querySelector("#lightbox"),lightboxImage=lightbox.querySelector("img"),lightboxCaption=lightbox.querySelector("figcaption"),galleryItems=[...document.querySelectorAll(".gallery-item")];
+let currentImage=0,audioAvailable=true,fadeFrame;
+function finishIntro(){intro.classList.add("is-leaving");body.classList.remove("intro-active");audioToggle.hidden=!audioAvailable;window.setTimeout(()=>{intro.hidden=true;document.querySelector("#portada").setAttribute("tabindex","-1");document.querySelector("#portada").focus({preventScroll:true})},1200)}
+function fadeAudio(target,duration=1200){cancelAnimationFrame(fadeFrame);const start=audio.volume,startTime=performance.now();const tick=now=>{const progress=Math.min((now-startTime)/duration,1);audio.volume=start+(target-start)*progress;if(progress<1)fadeFrame=requestAnimationFrame(tick)};fadeFrame=requestAnimationFrame(tick)}
+async function startAudio(){audio.volume=0;try{await audio.play();audioToggle.setAttribute("aria-pressed","true");audioToggle.setAttribute("aria-label","Desactivar música");audioToggle.classList.remove("is-muted");fadeAudio(.34,1800);sessionStorage.setItem("weddingAudio","on")}catch(error){audioAvailable=false;audioToggle.hidden=true}}
+function stopAudio(){fadeAudio(0,500);window.setTimeout(()=>audio.pause(),520);audioToggle.setAttribute("aria-pressed","false");audioToggle.setAttribute("aria-label","Activar música");audioToggle.classList.add("is-muted");sessionStorage.setItem("weddingAudio","off")}
+enterButton.addEventListener("click",()=>{startAudio();finishIntro()});document.querySelector(".skip-link").addEventListener("click",finishIntro);audio.addEventListener("error",()=>{audioAvailable=false;audioToggle.hidden=true},{once:true});audioToggle.addEventListener("click",()=>audio.paused?startAudio():stopAudio());
+function setHeader(){header.classList.toggle("scrolled",scrollY>24)}window.addEventListener("scroll",setHeader,{passive:true});setHeader();function closeMenu(){body.classList.remove("menu-open");header.classList.remove("menu-active");mainMenu.classList.remove("is-open");menuButton.setAttribute("aria-expanded","false")}menuButton.addEventListener("click",()=>{const open=body.classList.toggle("menu-open");header.classList.toggle("menu-active",open);mainMenu.classList.toggle("is-open",open);menuButton.setAttribute("aria-expanded",String(open))});mainMenu.querySelectorAll("a").forEach(link=>link.addEventListener("click",closeMenu));
+const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("is-visible");revealObserver.unobserve(entry.target)}}),{threshold:.12,rootMargin:"0px 0px -5%"});document.querySelectorAll(".reveal").forEach(item=>revealObserver.observe(item));
+function showImage(index){currentImage=(index+galleryItems.length)%galleryItems.length;const item=galleryItems[currentImage],image=item.querySelector("img");lightboxImage.src=item.dataset.full;lightboxImage.alt=image.alt;lightboxCaption.textContent=`${String(currentImage+1).padStart(2,"0")} — ${image.alt}`}
+function openLightbox(index){showImage(index);lightbox.classList.add("is-open");lightbox.setAttribute("aria-hidden","false");body.classList.add("lightbox-open");lightbox.querySelector(".lightbox-close").focus()}function closeLightbox(){lightbox.classList.remove("is-open");lightbox.setAttribute("aria-hidden","true");body.classList.remove("lightbox-open");lightboxImage.src="";galleryItems[currentImage].focus()}
+document.addEventListener("click",event=>{const item=event.target.closest(".gallery-item");if(item)openLightbox(galleryItems.indexOf(item))});lightbox.querySelector(".lightbox-close").addEventListener("click",closeLightbox);lightbox.querySelector(".prev").addEventListener("click",()=>showImage(currentImage-1));lightbox.querySelector(".next").addEventListener("click",()=>showImage(currentImage+1));lightbox.addEventListener("click",event=>{if(event.target===lightbox)closeLightbox()});let touchStart=0;lightbox.addEventListener("touchstart",event=>touchStart=event.changedTouches[0].clientX,{passive:true});lightbox.addEventListener("touchend",event=>{const distance=event.changedTouches[0].clientX-touchStart;if(Math.abs(distance)>45)showImage(currentImage+(distance<0?1:-1))},{passive:true});document.addEventListener("keydown",event=>{if(event.key==="Escape"){closeMenu();if(lightbox.classList.contains("is-open"))closeLightbox()}if(lightbox.classList.contains("is-open")&&event.key==="ArrowRight")showImage(currentImage+1);if(lightbox.classList.contains("is-open")&&event.key==="ArrowLeft")showImage(currentImage-1)});
+memoryForm.onsubmit=event=>{event.preventDefault();formNote.textContent="Gracias. Tu dedicatoria queda preparada para enviarse cuando conectes el formulario a un servicio de almacenamiento.";memoryForm.reset()};document.querySelectorAll("[data-whatsapp]").forEach(link=>link.href=`https://wa.me/${weddingConfig.whatsapp}?text=${encodeURIComponent(`Hola, quiero enviar fotos o vídeos de la boda de ${weddingConfig.couple}.`)}`);
