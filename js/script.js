@@ -1,6 +1,17 @@
 const weddingConfig={couple:"Ana & Javier",date:"12 · 10 · 2026",venue:"Bodegas Otazu",audioPath:"assets/audio/wedding-intro.mp3",whatsapp:"34600000000"};
 const body=document.body,header=document.querySelector(".site-header"),intro=document.querySelector("#cinematic-intro"),enterButton=document.querySelector("#enter-button"),menuButton=document.querySelector(".menu-toggle"),mainMenu=document.querySelector(".main-menu"),audio=document.querySelector("#wedding-audio"),audioToggle=document.querySelector("#audio-toggle"),memoryForm=document.querySelector("#memory-form"),formNote=document.querySelector("#form-note"),lightbox=document.querySelector("#lightbox"),lightboxImage=lightbox.querySelector("img"),lightboxCaption=lightbox.querySelector("figcaption"),galleryItems=[...document.querySelectorAll(".gallery-item")];
 let currentImage=0,audioAvailable=true,fadeFrame;
+
+const countdown=document.querySelector("[data-countdown]");
+function updateCountdown(){
+  if(!countdown)return;
+  const distance=Math.max(new Date(countdown.dataset.countdown).getTime()-Date.now(),0);
+  const units={days:Math.floor(distance/86400000),hours:Math.floor(distance/3600000)%24,minutes:Math.floor(distance/60000)%60,seconds:Math.floor(distance/1000)%60};
+  Object.entries(units).forEach(([unit,value])=>{countdown.querySelector(`[data-${unit}]`).textContent=String(value).padStart(2,"0")});
+  if(distance===0){document.querySelector("#countdown-title").textContent="Hoy comienza nuestra historia.";document.querySelector(".countdown-note").textContent="Gracias por vivir este día con nosotros."}
+}
+updateCountdown();
+window.setInterval(updateCountdown,1000);
 function finishIntro(){intro.classList.add("is-leaving");body.classList.remove("intro-active");audioToggle.hidden=!audioAvailable;window.setTimeout(()=>{intro.hidden=true;document.querySelector("#portada").setAttribute("tabindex","-1");document.querySelector("#portada").focus({preventScroll:true})},1200)}
 function fadeAudio(target,duration=1200){cancelAnimationFrame(fadeFrame);const start=audio.volume,startTime=performance.now();const tick=now=>{const progress=Math.min((now-startTime)/duration,1);audio.volume=start+(target-start)*progress;if(progress<1)fadeFrame=requestAnimationFrame(tick)};fadeFrame=requestAnimationFrame(tick)}
 async function startAudio(){audio.volume=0;try{await audio.play();audioToggle.setAttribute("aria-pressed","true");audioToggle.setAttribute("aria-label","Desactivar música");audioToggle.classList.remove("is-muted");fadeAudio(.34,1800);sessionStorage.setItem("weddingAudio","on")}catch(error){audioAvailable=false;audioToggle.hidden=true}}
